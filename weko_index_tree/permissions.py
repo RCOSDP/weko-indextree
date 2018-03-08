@@ -18,26 +18,9 @@
 # Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 # MA 02111-1307, USA.
 
-"""Bundles for weko-index-tree."""
+"""Permissions for index tree."""
 
-from flask_assets import Bundle
-from invenio_assets import NpmBundle
+from invenio_access import action_factory, Permission
 
-style = Bundle(
-    'css/weko_index_tree/styles.bundle.css',
-    filters='cleancss',
-    output="gen/index_tree_view.%(version)s.css"
-)
-
-js_treeview = NpmBundle(
-    'js/weko_index_tree/inline.bundle.js',
-    'js/weko_index_tree/polyfills.bundle.js',
-    'js/weko_index_tree/main.bundle.js',
-    output="gen/index_tree_view.js"
-)
-
-js = Bundle(
-    'js/weko_index_tree/app.js',
-    filters='requirejs',
-    output="gen/index_tree.%(version)s.js"
-)
+action_index_tree_access = action_factory('index-tree-access')
+index_tree_permission = Permission(action_index_tree_access)
